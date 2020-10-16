@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- JQuery, math.js and MathQuill library for typing mathematical expressions and latex -->
+        <link rel="stylesheet" href="./mathquill/mathquill.css"/>
+        <script src="./jquery.min.js"></script>
+        <script src="./mathquill/mathquill.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <style>
+            body {
+                min-width: 420px;
+            }
+            #userInput {
+                text-align: center;
+                overflow-x: scroll;
+            }
+
+            #outputText {
+                margin-top: 0px;
+                font-size: 20px;
+                text-align: center;
+                height: 40px;
+                width: 100%;
+            }
+
+            .controls {
+                text-align: center;
+            }
+            .banner {
+                text-align: center;
+            }
+            #right {
+                float: right;
+                height: 10px; 
+                width: 10px;
+                background-color: black;
+            }
+            /* #math-field {
+                overflow-x: scroll;
+                overflow-y: scroll;
+            } */
+        </style>
+        <p class = "banner"> <strong>WebWork Buddy</strong> | Subscribe to <a href = "https://youtube.com/c/JackHeTech" target="_blank">Jack He</a></p>
+        <div class = "controls">
+            <button class = "btn btn-primary" id = "sqrt"> Sqrt </button>
+            <button class = "btn btn-primary" id = "pi"> Pi </button>
+            <button class = "btn btn-primary" id = "clip"> Clipping Enabled </button>
+            <button class = "btn btn-primary" id = "copy"> Copy </button>
+            <button class = "btn btn-danger" id = "clear"> Clear </button>
+        </div>
+        
+        <div id = "userInput">  
+            <h2><span id="math-field"></span></h2>
+        </div>
+        <textarea id="outputText" type = "text"></textarea>
+        <script src="./popup.js" async defer></script>
+    </body>
+</html>

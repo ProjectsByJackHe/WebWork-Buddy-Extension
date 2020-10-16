@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "WebWork Buddy",
+    "version": "0.0.1",
+    "description": "Tired of headaches due to brackets on WebWork? WebWork Buddy is here to help!",
+    "icons": {
+        "16": "16x16.png",
+        "48": "48x48.png",
+        "128": "128x128.png"
+    },
+    "browser_action": {
+        "default_title": "WebWork Buddy",
+        "default_popup": "popup.html"
+    },
+    "commands": {
+        "_execute_browser_action": {
+          "suggested_key": {
+            "default": "Ctrl+E",
+            "mac": "Ctrl+E"
+          },
+          "description": "Opens popup.html"
+        }
+      },
+    "content_security_policy":
+        "script-src 'self' 'unsafe-eval'; object-src 'self'; img-src * data: 'self' 'unsafe-eval'",
+    "offline_enabled": true,
+    "permissions": ["<all_urls>", "storage"]
+}
