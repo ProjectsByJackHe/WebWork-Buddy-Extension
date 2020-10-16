@@ -26,7 +26,7 @@ function initMathQuillElement(element) {
     });
 
     // set the default value to whatever's in webwork's input
-    mathField.latex($(element).next().val());
+    mathField.typedText($(element).next().val());
 }
 
 function injectJacksNiceInput() {
