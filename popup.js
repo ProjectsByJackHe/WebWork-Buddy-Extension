@@ -14,6 +14,7 @@ outputText.onblur = (e) => {
 var mathFieldSpan = document.getElementById('math-field');
 var MQ = MathQuill.getInterface(2);
 let currentScrollPosition = 0
+let SHOULD_CLIP = true
 var mathField = MQ.MathField(mathFieldSpan, {
     autoCommands: 'pi theta sqrt sum',
     spaceBehavesLikeTab: true, 
