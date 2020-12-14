@@ -71,7 +71,7 @@ function snapToEnd(theEnd) {
 chrome.storage.sync.get(['key'], function(result) {
     console.log('Value currently is ' + result.key);
     if (result.key === "" || result.key === undefined) {
-        outputText.value = "Mac: Ctrl+Shift+A, Windows: Ctrl+Shift+A"
+        outputText.value = "Mac: Cmd+Shift+A, Windows: Ctrl+Shift+A"
     } else {
         mathField.latex(result.key)
     }
