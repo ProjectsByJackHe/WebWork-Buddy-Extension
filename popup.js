@@ -1,9 +1,22 @@
-var outputText = document.getElementById('outputText');
-var copy = document.getElementById('copy') 
-var clear = document.getElementById('clear')
-var userInput = document.getElementById('userInput') 
-var clip = document.getElementById('clip')
-var webwork = ""
+let outputText = document.getElementById('outputText');
+let copy = document.getElementById('copy') 
+let clear = document.getElementById('clear')
+let userInput = document.getElementById('userInput') 
+
+let latex = ""
+let answer = ""
+let webwork = ""
+
+function updateSaved() {
+    let currentlySavedLatex = localStorage.getItem("latex") || ""
+    let currentlySavedExpressions = localStorage.getItem("expression") || ""
+
+    if (latex !== "") {
+        localStorage.setItem("latex", currentlySavedLatex + " " + latex) 
+        localStorage.setItem("expression", currentlySavedExpressions + " " + answer)
+    }
+}
+
 outputText.onfocus = (event) => {
     event.target.select()
 }
@@ -11,12 +24,12 @@ outputText.onblur = (e) => {
     outputText.value = webwork
 }
 
-var mathFieldSpan = document.getElementById('math-field');
-var MQ = MathQuill.getInterface(2);
+let mathFieldSpan = document.getElementById('math-field');
+let MQ = MathQuill.getInterface(2);
 let currentScrollPosition = 0
-let SHOULD_CLIP = true
-var mathField = MQ.MathField(mathFieldSpan, {
-    autoCommands: 'pi theta sqrt sum',
+
+let mathField = MQ.MathField(mathFieldSpan, {
+    autoCommands: 'pi theta sqrt sum rho phi',
     spaceBehavesLikeTab: true, 
     handlers: {
         edit: function() {
@@ -30,7 +43,7 @@ var mathField = MQ.MathField(mathFieldSpan, {
             
             if (window.innerWidth === 800) {
                 currentScrollPosition = userInput.scrollLeft 
-                if (mathField.__controller.cursor[1] === 0 && SHOULD_CLIP) {
+                if (mathField.__controller.cursor[1] === 0) {
                     snapToEnd(10 ** 9)
                 } else {
                     adjustScrollBar()
@@ -40,15 +53,6 @@ var mathField = MQ.MathField(mathFieldSpan, {
     }
 });
 
-clip.onclick = () => {
-    if (SHOULD_CLIP) {
-        SHOULD_CLIP = false
-        clip.innerHTML = "Clipping Disabled" 
-    } else {
-        SHOULD_CLIP = true
-        clip.innerHTML = "Clipping Enabled"
-    }
-}
 
 function adjustScrollBar() {
     setTimeout(() => {
@@ -67,13 +71,17 @@ function snapToEnd(theEnd) {
 chrome.storage.sync.get(['key'], function(result) {
     console.log('Value currently is ' + result.key);
     if (result.key === "" || result.key === undefined) {
-        outputText.value = "MacOS: Command + E, Windows: Ctrl + E"
+        outputText.value = "Mac: Ctrl+Shift+A, Windows: Ctrl+Shift+A"
     } else {
         mathField.latex(result.key)
     }
 });
 
 clear.onclick = () => {
+    let saveOnClear = document.getElementById("save-on-clear") 
+    if (saveOnClear.checked) {
+        saveCurrentExpression()
+    }
     mathField.latex("")
 }
 
@@ -112,7 +120,7 @@ function latexToWebWork(latex) {
  * Finds every \left and \right
  * and removes them.
  */
-var Brackets = {
+let Brackets = {
     remove(latex) {
         let i = 0
         while (i < latex.length) {
@@ -144,7 +152,7 @@ var Brackets = {
 /**
  * Finds every \frac { ... } { ... } and returns { ... } / { ... }
  */
-var Fractions = {
+let Fractions = {
     remove(latex) {
         let i = 0 
         while (i < latex.length) {

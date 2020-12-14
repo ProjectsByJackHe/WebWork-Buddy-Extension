@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "WebWork Buddy",
-    "version": "0.0.2",
+    "version": "0.0.5",
     "description": "Tired of headaches due to brackets on WebWork? WebWork Buddy is here to help!",
     "icons": {
         "16": "16x16.png",
@@ -15,8 +15,8 @@
     "commands": {
         "_execute_browser_action": {
           "suggested_key": {
-            "default": "Ctrl+E",
-            "mac": "Ctrl+E"
+            "default": "Ctrl+Shift+A",
+            "mac": "Ctrl+Shift+A"
           },
           "description": "Opens popup.html"
         }

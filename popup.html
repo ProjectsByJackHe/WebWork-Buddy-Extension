@@ -15,6 +15,12 @@
         <link rel="stylesheet" href="./mathquill/mathquill.css"/>
         <script src="./jquery.min.js"></script>
         <script src="./mathquill/mathquill.js"></script>
+
+        <!--MATHJAX-->
+        <script src="./mathjax/features.js"></script>
+        <script id="MathJax-script" async
+                src="./mathjax/mathjax.js">
+        </script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -54,17 +60,25 @@
                 overflow-y: scroll;
             } */
         </style>
-        <p class = "banner"> <strong>WebWork Buddy</strong> | Subscribe to <a href = "https://youtube.com/c/JackHeTech" target="_blank">Jack He</a></p>
-        <div class = "controls">
-            <button class = "btn btn-primary" id = "clip"> Clipping Enabled </button>
+        <div class = "controls" style="margin-top: 5px;">
             <button class = "btn btn-primary" id = "copy"> Copy </button>
+            <button class = "btn btn-warning" id = "save"> Save </button>
             <button class = "btn btn-danger" id = "clear"> Clear </button>
+            <button class = "btn btn-dark" id = "clear-all"> Remove all saved </button>
         </div>
-        
+        <div class="form-check" style="margin-left: 45px;">
+            <input type="checkbox" class="form-check-input" id="save-on-clear" checked>
+            <label class="form-check-label" for="save-on-clear">Save Expression after you clear it</label>
+        </div>
         <div id = "userInput">  
             <h2><span id="math-field"></span></h2>
         </div>
         <textarea id="outputText" type = "text"></textarea>
+        <div style="display: flex;">
+            <h6 style="margin-left: 15px;">Saved Expressions: </h6>
+        </div>
+        <ul id = "cache" style="text-align: center; height: 65px; overflow: scroll"></ul>
         <script src="./popup.js" async defer></script>
+        <script src="storage.js"></script>
     </body>
 </html>
